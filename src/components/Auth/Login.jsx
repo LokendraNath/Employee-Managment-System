@@ -13,7 +13,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flexGrp h-screen w-screen">
+    <div className="flexGrp w-screen h-screen">
       <div className="p-20 rounded-3xl border border-blue-700 shadow-[0px_0px_28px_-3px_rgba(20,_71,_230,_0.75)]">
         <h1 className="text-5xl font-bold mb-1">Login</h1>
         <p className="mb-10">Enter Your Details</p>
