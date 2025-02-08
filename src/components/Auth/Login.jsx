@@ -1,13 +1,13 @@
 import { LogIn } from "lucide-react";
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(`Your Email ${email}, And Your Password ${password}`);
+    handleLogin(email, password);
     setEmail("");
     setPassword("");
   };
