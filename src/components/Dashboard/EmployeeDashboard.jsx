@@ -3,13 +3,14 @@ import Header from "../other/Header";
 import TaskInsights from "../other/TaskInsights";
 import TaskList from "../TaskList/TaskList";
 
-const EmployeeDashboard = () => {
+const EmployeeDashboard = ({EmpData}) => {
+  
   return (
     <div className="bg-[#121026] h-screen">
       {/* <Login /> */}
-      <Header />
-      <TaskInsights />
-      <TaskList />
+      <Header EmpData={EmpData}/>
+      <TaskInsights EmpData={EmpData}/>
+      <TaskList EmpData={EmpData}/>
     </div>
   );
 };

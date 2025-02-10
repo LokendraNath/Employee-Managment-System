@@ -1,34 +1,53 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Login from "./components/Auth/Login";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
-import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [loggedInUserData, setLoggedInUserData] = useState(null);
+  const authData = useContext(AuthContext);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if(loggedInUser){
+      console.log("user Logged In")
+    }
+  
+  }, [])
+  
 
   const handleLogin = (email, password) => {
-    if (email === "admin@123" && password === "123") {
+    if (
+      authData.admin.find((e) => e.email == email && e.password == password)
+    ) {
       setUser("admin");
-    } else if (email === "user@123" && password === "123") {
-      setUser("employee");
+      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
+    } else if (authData) {
+      const employee = authData.employees.find(
+        (e) => e.email == email && e.password == password
+      );
+      if (employee) {
+        setUser("employee");
+        setLoggedInUserData(employee);
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({ role: "employee" })
+        );
+      }
     } else {
       alert("Invalid Credentials");
     }
   };
 
-  const data = useContext(AuthContext);
-  console.log(data);
-
   return (
     <>
-      {!user ? (
-        <Login handleLogin={handleLogin} />
-      ) : user === "admin" ? (
-        <AdminDashboard />
-      ) : (
-        <EmployeeDashboard />
+      {!user 
+        ? (<Login handleLogin={handleLogin} />) 
+        : user === "admin" 
+          ? (<AdminDashboard />) 
+          : (<EmployeeDashboard EmpData={loggedInUserData} />
       )}
     </>
   );
