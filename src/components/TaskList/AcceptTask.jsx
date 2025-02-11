@@ -7,7 +7,7 @@ const AcceptTask = ({taskData}) => {
       <h3>{taskData.taskDate}</h3>
       <div className="flex items-center justify-between mt-5 mb-3">
         <h1 className="text-3xl">{taskData.taskTitle}</h1>
-        <Flag size={20} fill="red" />
+        <p className="bg-gray-400 py-1 px-2 rounded-xl text-sm">{taskData.category}</p>
       </div>
       <p className="text-base">
       {taskData.taskDescription}

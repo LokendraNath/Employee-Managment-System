@@ -1,17 +1,16 @@
 import React from "react";
 import { Flag } from "lucide-react";
 
-const CompleteTask = () => {
+const CompleteTask = ({taskData}) => {
   return (
     <div className="shrink-0 h-full w-[350px] bg-blue-600 rounded-2xl p-6">
-      <h3>6 Feb 2025</h3>
+      <h3>{taskData.taskDate}</h3>
       <div className="flex items-center justify-between mt-5 mb-3">
-        <h1 className="text-3xl">Project Deliver</h1>
-        <Flag size={20} fill="red" />
+        <h1 className="text-3xl">{taskData.taskTitle}</h1>
+        <p className="bg-red-500 py-1 px-2 rounded-xl">{taskData.category}</p>
       </div>
       <p className="text-base">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eaque
-        sapiente doloribus! Totam, distinctio adipisci!
+      {taskData.taskDescription}
       </p>
       <div className="mt-3">
         <button className="w-full">Completed</button>

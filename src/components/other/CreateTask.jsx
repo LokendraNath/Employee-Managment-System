@@ -14,7 +14,10 @@ const CreateTask = () => {
             </div>
             <div>
               <h3 className="admin-h3">Date</h3>
-              <input className="bg-white h-15 w-[500px] px-3 text-black font-semibold text-[17px] rounded-xl mb-5" type="date" />
+              <input
+                className="bg-white h-15 w-[500px] px-3 text-black font-semibold text-[17px] rounded-xl mb-5"
+                type="date"
+              />
             </div>
             <div>
               <h3 className="admin-h3">Assign To</h3>

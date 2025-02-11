@@ -11,12 +11,10 @@ const App = () => {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
-    if(loggedInUser){
-      console.log("user Logged In")
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
     }
-  
-  }, [])
-  
+  }, []);
 
   const handleLogin = (email, password) => {
     if (
@@ -33,7 +31,7 @@ const App = () => {
         setLoggedInUserData(employee);
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "employee" })
+          JSON.stringify({ role: "employee", data: employee })
         );
       }
     } else {
@@ -43,11 +41,12 @@ const App = () => {
 
   return (
     <>
-      {!user 
-        ? (<Login handleLogin={handleLogin} />) 
-        : user === "admin" 
-          ? (<AdminDashboard />) 
-          : (<EmployeeDashboard EmpData={loggedInUserData} />
+      {!user ? (
+        <Login handleLogin={handleLogin} />
+      ) : user === "admin" ? (
+        <AdminDashboard />
+      ) : (
+        <EmployeeDashboard EmpData={loggedInUserData} />
       )}
     </>
   );
